@@ -27,7 +27,7 @@ return new class extends Migration
             $table->bigInteger('financiamiento_id')->unsigned()->index()->nullable();
             $table->foreign('financiamiento_id')->references('id')->on('financiamientos')->onDelete('cascade'); 
             
-            $table->tinyInteger('estado_bien')->default(1);
+            $table->string('estado_bien');
             $table->tinyInteger('estado')->default(1);
             $table->timestamps();
         });

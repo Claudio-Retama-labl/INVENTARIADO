@@ -7,12 +7,8 @@
 @stop
 
 @section('content')
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open
-        modal for @mdo</button>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open
-        modal for @fat</button>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-        data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Nueva Dependencia</button>
+
 
 
     <table id="dependenciasTable" style="width:100%" class="display table table-striped " style="width:100%">

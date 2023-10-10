@@ -5,6 +5,8 @@ use App\Http\Controllers\ArticulosController;
 use App\Http\Controllers\Categorias;
 use App\Http\Controllers\Dependencias;
 use App\Http\Controllers\Financiamientos;
+use App\Http\Middleware\Authenticate;
+
 
 
 
@@ -21,14 +23,18 @@ use App\Http\Controllers\Financiamientos;
 
 Route::get('/', function () {
   return view('auth.login');
+  
 });
 
-Auth::routes(
-  
-);
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes();
+ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('welcome');
 Route::get('articulos', [ArticulosController::class, 'index']);
 Route::post('articulos-store', [ArticulosController::class, 'store'])->name('articulos-store');
+Route::get('articulos/edit/{id}', [ArticulosController::class, 'edit'])->name('articulos/edit');
+Route::put('articulos/update/{id}', [ArticulosController::class, 'update'])->name('articulos/update');;
+Route::post('articulos/update_status/{id}', [ArticulosController::class, 'update_status'])->name('articulos/update_status');
+Route::get('articulos/update_status/{id}', [ArticulosController::class, 'update_status'])->name('articulos/update_status');
+
 
 Route::get('categorias', [Categorias::class, 'index']);
 Route::post('categorias-store', [Categorias::class, 'store'])->name('categorias-store');

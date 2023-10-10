@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Articulo;
+use App\Models\Dependencia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -10,7 +11,6 @@ class ArticulosController extends Controller
 {
     public function __construct()
     {
-      
     }
 
     public function index()
@@ -20,10 +20,10 @@ class ArticulosController extends Controller
         $financiamientos = DB::table('financiamientos')->get();
         $dependencias = DB::table('dependencias')->get();
         return view('articulos.index', compact('data', 'categorias', 'financiamientos', 'dependencias'));
-    
 
 
-       /*  $articulos = DB::table('articulos')
+
+        /*  $articulos = DB::table('articulos')
         ->join('dependencias', 'dependencias.id', '=', 'articulos.dependencias_id')
         ->join('categorias', 'categorias.id', '=', 'articulos.categorias_id')
         ->join('financiamientos', 'financiamientos.id', '=', 'articulos.financiamiento_id')
@@ -32,8 +32,6 @@ class ArticulosController extends Controller
         )
         ->get();
         dd($articulos); */
-
-    
     }
 
     /**
@@ -56,14 +54,15 @@ class ArticulosController extends Controller
             'modelo' => $request->input('modelo'),
             'especificaciones' => $request->input('especificaciones'),
             'color' => $request->input('color'),
-            
+
             'dependencias_id' => $request->input('dependencia'),
             'categorias_id' => $request->input('categorias'),
             'financiamiento_id' => $request->input('financiamiento_id'),
             'estado_bien' => $request->input('estado_bien'),
         ]);
 
-
+        
+        return redirect('articulos');
     }
 
     /**
@@ -72,6 +71,7 @@ class ArticulosController extends Controller
     public function show(string $id)
     {
         //
+
     }
 
     /**
@@ -79,7 +79,11 @@ class ArticulosController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
+        $articulos = Articulo::findOrFail($id);
+        $dependencias = Dependencia::pluck('nombre', 'id'); // Obtén todas las categorías
+    
+        return view('articulos.edit', compact('articulos', 'dependencias'));
     }
 
     /**
@@ -88,8 +92,35 @@ class ArticulosController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $this->validate($request, [
+            'name' => 'required|max:255',
+        ]);
+
+        $articulo = Articulo::find($id);
+        $articulo->name = $request->input('name');
+        $articulo->update();
+        return redirect('');
     }
 
+    public function update_status($id)
+    {
+        $articulos = DB::table('articulos')
+            ->select('estado')
+            ->where('id', '=', $id)
+            ->first();
+
+
+        if ($articulos->estado == '1') {
+            $status = '0';
+        } else {
+            $status = '1';
+        }
+
+        $values = array('estado' => $status);
+        DB::table('articulos')->where('id', $id)->update($values);
+        session()->flash('msg', 'categories status has been updated sucesfully');
+        return redirect('articulos');
+    }
     /**
      * Remove the specified resource from storage.
      */
