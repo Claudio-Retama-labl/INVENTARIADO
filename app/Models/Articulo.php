@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-
 class Articulo extends Model
 {
     use HasFactory;
@@ -15,7 +14,9 @@ class Articulo extends Model
         'serial',
         'color',
         'modelo',
+        'numero_caja',
         'especificaciones',
+        'personal_id',
         'categorias_id',
         'dependencias_id',
         'financiamiento_id',
@@ -27,13 +28,18 @@ class Articulo extends Model
         return $this->hasMany(Categoria::class);
     }
 
-    public function Dependecia(): HasMany
+    public function Dependencia(): HasMany
     {
-        return $this->hasMany(Dependecia::class);
+        return $this->hasMany(Dependencia::class);
     }
 
     public function Financiamiento(): HasMany
     {
         return $this->hasMany(Financiamiento::class);
+    }
+
+    public function Personal(): HasMany
+    {
+        return $this->hasMany(Personal::class);
     }
 }

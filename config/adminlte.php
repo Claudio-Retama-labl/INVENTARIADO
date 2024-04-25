@@ -358,7 +358,7 @@ return [
                 ],
                 [
                     'text' => 'Personal',
-                    'url'  => '/personal',
+                    'url'  => '/Personal',
                 ],
 
                 [

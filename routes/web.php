@@ -5,7 +5,9 @@ use App\Http\Controllers\ArticulosController;
 use App\Http\Controllers\Categorias;
 use App\Http\Controllers\Dependencias;
 use App\Http\Controllers\Financiamientos;
+use App\Http\Controllers\PersonalController;
 use App\Http\Middleware\Authenticate;
+
 
 
 
@@ -43,6 +45,8 @@ Route::post('dependencias-store', [Dependencias::class, 'store'])->name('depende
 Route::get('financiamientos', [Financiamientos::class, 'index']);
 Route::post('financiamientos-store', [Financiamientos::class, 'store'])->name('financiamientos-store');
 
+Route::get('Personal', [PersonalController::class, 'index']);
+Route::post('personal-store', [PersonalController::class, 'store'])->name('personal-store');
 
    /*  Route::get('admin/promociones', [AdminPromocionesController::class, 'index']);
     Route::post('admin/promociones-store', [AdminPromocionesController::class, 'store'])->name('admin/promociones-store');; */

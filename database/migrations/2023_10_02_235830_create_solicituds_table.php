@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('nombre_solicitud');
             $table->string('tipo');
+
+            
             $table->string('estado');
             $table->timestamps();
         });

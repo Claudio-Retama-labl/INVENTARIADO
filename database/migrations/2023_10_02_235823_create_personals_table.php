@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('personals', function (Blueprint $table) {
             $table->id();
+            $table->string('nombres');
+            $table->string('apellidos');
+            $table->string('cargo');
+            $table->string('estado')->default(1);
             $table->timestamps();
         });
     }

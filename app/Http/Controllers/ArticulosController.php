@@ -19,7 +19,8 @@ class ArticulosController extends Controller
         $categorias  = DB::table('categorias')->get();
         $financiamientos = DB::table('financiamientos')->get();
         $dependencias = DB::table('dependencias')->get();
-        return view('articulos.index', compact('data', 'categorias', 'financiamientos', 'dependencias'));
+        $personal = DB::table('personals')->get();
+        return view('articulos.index', compact('data', 'categorias', 'financiamientos', 'dependencias','personal'));
 
 
 
@@ -47,17 +48,22 @@ class ArticulosController extends Controller
      */
     public function store(Request $request)
     {
+       
         $articulos = new Articulo();
         $articulos::create([
             'nombre' => $request->input('nombre'),
             'serial' => $request->input('serial'),
             'modelo' => $request->input('modelo'),
-            'especificaciones' => $request->input('especificaciones'),
             'color' => $request->input('color'),
+            'especificaciones' => $request->input('especificaciones'),
 
-            'dependencias_id' => $request->input('dependencia'),
+           'numero_caja' =>  $request->input('numero_caja'),
             'categorias_id' => $request->input('categorias'),
-            'financiamiento_id' => $request->input('financiamiento_id'),
+            'dependencias_id' => $request->input('dependencia'),
+            'financiamiento_id' => $request->input('financiamiento'),
+
+            'personal_id' => $request->input('personal'),
+
             'estado_bien' => $request->input('estado_bien'),
         ]);
 

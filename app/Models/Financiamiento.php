@@ -13,7 +13,7 @@ class Financiamiento extends Model
         'nombre',
         'tipo',
         'descripcion',
-        
+        'estado'
     ];
 
     public function Articulo(): BelongsTo

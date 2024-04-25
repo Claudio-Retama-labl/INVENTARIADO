@@ -13,9 +13,9 @@ class Dependencia extends Model
     protected $fillable = [
         'nombre',
         'descripcion',
+        'estado'
 
     ];
-
 
     public function Articulo(): BelongsTo
     {

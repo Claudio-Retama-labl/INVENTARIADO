@@ -113,7 +113,7 @@
 
                         <select class="form-control" aria-label="Default select example" name="estado_bien">
                             <option disabled>Seleccione estado del equipo</option>
-                            <option value="{{ $articulos->estado_bien }}">{{ $articulos->estado_bien }}</option>
+                            <option value="{{ $articulos->estado }}">{{ $articulos->estado }}</option>
 
 
                         </select>
